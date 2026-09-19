@@ -1,0 +1,75 @@
+{
+  "transcript_id": "multiturn_correction_cancel",
+  "version": "v3",
+  "artifact_version": "v3+pSYSTEM+tTOOLS",
+  "provider": "gemini",
+  "model": "gemini-2.5-flash",
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-09-19T10:10:00",
+  "updated_at": "2026-09-19T10:12:00",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-09-19T10:10:00",
+      "user": "Kiểm tra bảo mật máy LT-204 giúp mình.",
+      "status": "answered",
+      "assistant_text": "Thiết bị LT-204 có ổ đĩa đã mã hóa, endpoint agent hoạt động tốt và bản vá bảo mật đã cập nhật đầy đủ.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [{"name": "inspect_device", "args": {"asset_id": "LT-204", "check": "security"}}],
+          "tool_results": [{
+            "tool": "inspect_device",
+            "args": {"asset_id": "LT-204", "check": "security"},
+            "result": {"tool": "inspect_device", "asset_id": "LT-204", "diagnostics": {"security": "disk encrypted; endpoint agent healthy; patches current"}}
+          }]
+        }
+      ],
+      "tool_events": [{
+        "tool": "inspect_device",
+        "args": {"asset_id": "LT-204", "check": "security"},
+        "result": {"tool": "inspect_device", "asset_id": "LT-204", "diagnostics": {"security": "disk encrypted; endpoint agent healthy; patches current"}}
+      }],
+      "ended_at": "2026-09-19T10:10:30"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-09-19T10:11:00",
+      "user": "À nhầm, máy LT-240 mới đúng, kiểm tra bảo mật máy đó.",
+      "status": "answered",
+      "assistant_text": "Thiết bị LT-240 có ổ đĩa đã mã hóa, endpoint agent hoạt động tốt nhưng đang có 1 bản vá critical đang chờ cập nhật.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [{"name": "inspect_device", "args": {"asset_id": "LT-240", "check": "security"}}],
+          "tool_results": [{
+            "tool": "inspect_device",
+            "args": {"asset_id": "LT-240", "check": "security"},
+            "result": {"tool": "inspect_device", "asset_id": "LT-240", "diagnostics": {"security": "disk encrypted; endpoint agent healthy; one critical patch pending"}}
+          }]
+        }
+      ],
+      "tool_events": [{
+        "tool": "inspect_device",
+        "args": {"asset_id": "LT-240", "check": "security"},
+        "result": {"tool": "inspect_device", "asset_id": "LT-240", "diagnostics": {"security": "disk encrypted; endpoint agent healthy; one critical patch pending"}}
+      }],
+      "ended_at": "2026-09-19T10:11:30"
+    },
+    {
+      "turn_index": 3,
+      "started_at": "2026-09-19T10:12:00",
+      "user": "Dừng lại, không kiểm tra thêm gì nữa, cảm ơn bạn.",
+      "status": "answered",
+      "assistant_text": "Đã hiểu, mình đã dừng toàn bộ thao tác kiểm tra. Nếu bạn cần hỗ trợ thêm vấn đề IT nào khác, hãy nhắn mình nhé!",
+      "rounds": [],
+      "tool_events": [],
+      "ended_at": "2026-09-19T10:12:15"
+    }
+  ]
+}

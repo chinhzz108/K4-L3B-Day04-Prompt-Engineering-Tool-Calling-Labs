@@ -1,0 +1,77 @@
+{
+  "transcript_id": "bonus_tool_warranty_check",
+  "version": "v3",
+  "artifact_version": "v3+pSYSTEM+tTOOLS",
+  "provider": "gemini",
+  "model": "gemini-2.5-flash",
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-09-19T10:20:00",
+  "updated_at": "2026-09-19T10:21:00",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-09-19T10:20:00",
+      "user": "Tra cứu thời hạn bảo hành phần cứng và SLA của máy LT-204 giúp mình.",
+      "status": "answered",
+      "assistant_text": "Thiết bị Lenovo ThinkPad T14 Gen 4 (mã LT-204) hiện có trạng thái bảo hành ACTIVE (còn hạn đến ngày 2027-02-11). Gói bảo hành hiện tại là Standard Next-Business-Day (NBD) do Lenovo Enterprise Support Care phụ trách và đủ điều kiện đổi mới linh kiện/thay thế phần cứng miễn phí.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "check_device_warranty",
+              "args": {
+                "asset_id": "LT-204"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "check_device_warranty",
+              "args": {
+                "asset_id": "LT-204"
+              },
+              "result": {
+                "tool": "check_device_warranty",
+                "asset_id": "LT-204",
+                "manufacturer": "Lenovo",
+                "model": "ThinkPad T14 Gen 4",
+                "warranty_until": "2027-02-11",
+                "warranty_status": "active",
+                "days_remaining": 145,
+                "sla_tier": "Standard Next-Business-Day (NBD)",
+                "service_provider": "Lenovo Enterprise Support Care",
+                "replacement_eligible": true
+              }
+            }
+          ]
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "check_device_warranty",
+          "args": {
+            "asset_id": "LT-204"
+          },
+          "result": {
+            "tool": "check_device_warranty",
+            "asset_id": "LT-204",
+            "manufacturer": "Lenovo",
+            "model": "ThinkPad T14 Gen 4",
+            "warranty_until": "2027-02-11",
+            "warranty_status": "active",
+            "days_remaining": 145,
+            "sla_tier": "Standard Next-Business-Day (NBD)",
+            "service_provider": "Lenovo Enterprise Support Care",
+            "replacement_eligible": true
+          }
+        }
+      ],
+      "ended_at": "2026-09-19T10:21:00"
+    }
+  ]
+}

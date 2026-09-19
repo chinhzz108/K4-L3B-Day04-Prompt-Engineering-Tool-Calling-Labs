@@ -1,0 +1,66 @@
+{
+  "transcript_id": "missing_info_clarification",
+  "version": "v3",
+  "artifact_version": "v3+pSYSTEM+tTOOLS",
+  "provider": "gemini",
+  "model": "gemini-2.5-flash",
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-09-19T10:05:00",
+  "updated_at": "2026-09-19T10:06:00",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-09-19T10:05:00",
+      "user": "Kiểm tra kết nối Wi-Fi trên laptop của mình giúp nhé.",
+      "status": "waiting_for_user",
+      "assistant_text": "Bạn vui lòng cung cấp mã tài sản (asset_id) của laptop (ví dụ LT-204 hoặc LT-240) để mình tiến hành kiểm tra kết nối nhé.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "Bạn vui lòng cung cấp mã tài sản (asset_id) của laptop để mình tiến hành kiểm tra nhé.",
+                "response_type": "text"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "clarify",
+              "args": {
+                "question": "Bạn vui lòng cung cấp mã tài sản (asset_id) của laptop để mình tiến hành kiểm tra nhé.",
+                "response_type": "text"
+              },
+              "result": {
+                "tool": "clarify",
+                "awaiting_user": true,
+                "response_type": "text"
+              }
+            }
+          ]
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn vui lòng cung cấp mã tài sản (asset_id) của laptop để mình tiến hành kiểm tra nhé.",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "clarify",
+            "awaiting_user": true,
+            "response_type": "text"
+          }
+        }
+      ],
+      "ended_at": "2026-09-19T10:06:00"
+    }
+  ]
+}
