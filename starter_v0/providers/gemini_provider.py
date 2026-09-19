@@ -73,7 +73,7 @@ class GeminiProvider:
         self,
         *,
         api_key_env: str = "GEMINI_API_KEY",
-        default_model: str = "gemini-3.5-flash",
+        default_model: str = "gemini-flash-latest",
     ) -> None:
         self.api_key_env = api_key_env
         self.default_model = default_model
@@ -105,12 +105,27 @@ class GeminiProvider:
         if declarations:
             config_kwargs["tools"] = [types.Tool(function_declarations=declarations)]
 
+        import time
         client = genai.Client(api_key=api_key)
-        resp = client.models.generate_content(
-            model=model or self.default_model,
-            contents=contents,
-            config=types.GenerateContentConfig(**config_kwargs),
-        )
+        target_model = model or self.default_model
+        resp = None
+        for attempt in range(6):
+            try:
+                resp = client.models.generate_content(
+                    model=target_model,
+                    contents=contents,
+                    config=types.GenerateContentConfig(**config_kwargs),
+                )
+                break
+            except Exception as exc:
+                err_msg = str(exc)
+                retryable = any(code in err_msg for code in ["429", "RESOURCE_EXHAUSTED", "503", "UNAVAILABLE"])
+                if retryable and attempt < 5:
+                    wait_time = 8.0 * (attempt + 1)
+                    print(f"Transient API error ({exc.__class__.__name__}): Retrying in {wait_time}s... (attempt {attempt + 1}/5)", flush=True)
+                    time.sleep(wait_time)
+                else:
+                    raise
 
         text_parts: list[str] = []
         calls: list[ToolCall] = []
